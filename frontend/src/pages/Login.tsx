@@ -29,11 +29,20 @@ const Login: React.FC = () => {
     try {
       const response = await fetch('http://localhost/api/login', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+         },
         body: JSON.stringify(formData),
       });
 
-      const data = await response.json();
+      let data;
+      try {
+          data = await response.json();
+      } catch (jsonError) {
+          setError("Invalid server response");
+          return;
+      }
 
       if (!response.ok) {
         setError(data.message || 'Login failed');
