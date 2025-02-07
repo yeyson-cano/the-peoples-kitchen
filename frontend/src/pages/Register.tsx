@@ -35,17 +35,17 @@ const Register: React.FC = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json'
-         },
+          'Accept': 'application/json',
+        },
         body: JSON.stringify(formData),
       });
 
       let data;
       try {
-          data = await response.json();
+        data = await response.json();
       } catch (jsonError) {
-          setError("Invalid server response");
-          return;
+        setError('Invalid server response');
+        return;
       }
 
       if (!response.ok) {
@@ -53,8 +53,11 @@ const Register: React.FC = () => {
         return;
       }
 
+      // Store the token in localStorage
       localStorage.setItem('token', data.token);
-      navigate('/dashboard');
+
+      // Redirect all registered users to /menu
+      navigate('/menu');
     } catch (err) {
       setError('An error occurred. Please try again.');
     }
