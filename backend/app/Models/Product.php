@@ -10,7 +10,7 @@ class Product extends Model
     use HasFactory;
 
     /**
-    * The attributes that are mass assignable.
+     * The attributes that are mass assignable.
      */
     protected $fillable = [
         'name',        
@@ -18,5 +18,13 @@ class Product extends Model
         'price',      
         'image',     
         'active'       
+    ];
+
+    /**
+     * The attributes that should be cast to native types.
+     */
+    protected $casts = [
+        'price' => 'float',  // Ensure 'price' is always a float
+        'active' => 'boolean' // Ensure 'active' is always a boolean
     ];
 }

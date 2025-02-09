@@ -15,4 +15,18 @@ class ProductController extends Controller
         $products = Product::where('active', true)->get();
         return response()->json($products, 200);
     }
+
+    /**
+     * Obtain details of a single product
+     */
+    public function show($id)
+    {
+        $product = Product::where('id', $id)->where('active', true)->first();
+
+        if (!$product) {
+            return response()->json(['message' => 'Product not found'], 404);
+        }
+
+        return response()->json($product, 200);
+    }
 }

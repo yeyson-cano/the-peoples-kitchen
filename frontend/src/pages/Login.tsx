@@ -31,17 +31,17 @@ const Login: React.FC = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json'
-         },
+          'Accept': 'application/json',
+        },
         body: JSON.stringify(formData),
       });
 
       let data;
       try {
-          data = await response.json();
+        data = await response.json();
       } catch (jsonError) {
-          setError("Invalid server response");
-          return;
+        setError('Invalid server response');
+        return;
       }
 
       if (!response.ok) {
@@ -49,11 +49,14 @@ const Login: React.FC = () => {
         return;
       }
 
-      // Store the token in localStorage
+      // Store the token and user name in localStorage
       localStorage.setItem('token', data.token);
+      localStorage.setItem('user', JSON.stringify({ name: data.user.name }));
+      localStorage.setItem('showWelcomeAlert', 'true'); // Set flag for welcome alert
+      localStorage.setItem('role', data.user.role);
 
-      // Redirect the user
-      navigate('/dashboard');
+      // Redirect the user based on their role
+      navigate(data.user.role === 'admin' ? '/dashboard' : '/menu');
     } catch (err) {
       setError('An error occurred. Please try again.');
     }
@@ -65,8 +68,22 @@ const Login: React.FC = () => {
       {error && <p className="error">{error}</p>}
 
       <form onSubmit={handleSubmit}>
-        <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required />
-        <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} required />
+        <input 
+          type="email" 
+          name="email" 
+          placeholder="Email" 
+          value={formData.email} 
+          onChange={handleChange} 
+          required 
+        />
+        <input 
+          type="password" 
+          name="password" 
+          placeholder="Password" 
+          value={formData.password} 
+          onChange={handleChange} 
+          required 
+        />
         <button type="submit">Login</button>
       </form>
     </div>

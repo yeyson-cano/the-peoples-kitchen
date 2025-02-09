@@ -1,0 +1,80 @@
+/* Notice Container */
+.notice-container {
+    max-width: 500px;
+    margin: 60px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Notice Title */
+.notice-container h2 {
+    font-size: 24px;
+    color: #222;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* Notice Message */
+.notice-container p {
+    font-size: 18px;
+    color: #444;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+/* Buttons Container */
+.notice-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    margin-top: 15px;
+}
+
+/* Buttons */
+.notice-button {
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    width: 100%;
+}
+
+/* Primary Button (Login) */
+.notice-button.primary {
+    background-color: #ff4d4d;
+    color: white;
+}
+
+.notice-button.primary:hover {
+    background-color: #cc0000;
+}
+
+/* Secondary Button (Register) */
+.notice-button.secondary {
+    background-color: #ddd;
+    color: #333;
+}
+
+.notice-button.secondary:hover {
+    background-color: #bbb;
+}
+
+/* Neutral Button (Go Back) */
+.notice-button.neutral {
+    background-color: #008c45;
+    color: white;
+}
+
+.notice-button.neutral:hover {
+    background-color: #006b36;
+}
