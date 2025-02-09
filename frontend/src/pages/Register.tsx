@@ -53,7 +53,7 @@ const Register: React.FC = () => {
         return;
       }
 
-      // Store the token and user name in localStorage
+      // Store only the token and user name in localStorage
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify({ name: data.user.name }));
       localStorage.setItem('showWelcomeAlert', 'true'); // Set flag for welcome alert
@@ -106,6 +106,11 @@ const Register: React.FC = () => {
         />
         <button type="submit">Register</button>
       </form>
+
+      <p className="redirect-text">
+        Already have an account? 
+        <button onClick={() => navigate('/login')} className="login-link">Login</button>
+      </p>
     </div>
   );
 };
