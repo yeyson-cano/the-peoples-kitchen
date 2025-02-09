@@ -53,8 +53,11 @@ const Register: React.FC = () => {
         return;
       }
 
-      // Store the token in localStorage
+      // Store the token and user name in localStorage
       localStorage.setItem('token', data.token);
+      localStorage.setItem('user', JSON.stringify({ name: data.user.name }));
+      localStorage.setItem('showWelcomeAlert', 'true'); // Set flag for welcome alert
+      localStorage.setItem('role', data.user.role);
 
       // Redirect all registered users to /menu
       navigate('/menu');
@@ -69,10 +72,38 @@ const Register: React.FC = () => {
       {error && <p className="error">{error}</p>}
 
       <form onSubmit={handleSubmit}>
-        <input type="text" name="name" placeholder="Full Name" value={formData.name} onChange={handleChange} required />
-        <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required />
-        <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} required />
-        <input type="password" name="password_confirmation" placeholder="Confirm Password" value={formData.password_confirmation} onChange={handleChange} required />
+        <input 
+          type="text" 
+          name="name" 
+          placeholder="Full Name" 
+          value={formData.name} 
+          onChange={handleChange} 
+          required 
+        />
+        <input 
+          type="email" 
+          name="email" 
+          placeholder="Email" 
+          value={formData.email} 
+          onChange={handleChange} 
+          required 
+        />
+        <input 
+          type="password" 
+          name="password" 
+          placeholder="Password" 
+          value={formData.password} 
+          onChange={handleChange} 
+          required 
+        />
+        <input 
+          type="password" 
+          name="password_confirmation" 
+          placeholder="Confirm Password" 
+          value={formData.password_confirmation} 
+          onChange={handleChange} 
+          required 
+        />
         <button type="submit">Register</button>
       </form>
     </div>
