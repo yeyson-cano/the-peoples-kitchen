@@ -1,0 +1,65 @@
+/* General Banner Styling */
+.alert-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #b22222; /* Soviet Red */
+    color: white;
+    padding: 15px;
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.5s ease-in-out;
+    z-index: 1000;
+}
+
+/* Different alert types */
+.alert-banner.success {
+    background-color: #b22222;
+}
+
+.alert-banner.error {
+    background-color: #d32f2f;
+}
+
+.alert-banner.info {
+    background-color: #1976d2;
+}
+
+/* Alert Content */
+.alert-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Propaganda Image */
+.alert-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+/* Close Button */
+.alert-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
