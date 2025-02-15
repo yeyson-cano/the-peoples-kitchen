@@ -24,7 +24,7 @@ const Alert: React.FC<AlertProps> = ({ message, type = 'info', duration = 4000 }
   return (
     <div className={`alert-banner ${type}`}>
       <div className="alert-content">
-        <img src={sovietBanner} alt="Soviet Welcome" className="alert-image" />
+        <img src={sovietBanner} alt="Soviet Logo" className="alert-image" />
         <p>{message}</p>
       </div>
       <button className="alert-close" onClick={() => setVisible(false)}>✖</button>
