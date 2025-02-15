@@ -1,3 +1,8 @@
+.login-container input,
+.login-container button {
+  box-sizing: border-box;
+}
+
 /* Register Form Container */
 .register-container {
   max-width: 400px;
