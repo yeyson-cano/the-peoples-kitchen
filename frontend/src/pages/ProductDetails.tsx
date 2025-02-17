@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import Alert from '../components/Alert';
 import '../styles/ProductDetails.css';
 
 interface Product {
@@ -14,9 +15,12 @@ interface Product {
 const ProductDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>(); // Get product ID from URL
   const navigate = useNavigate();
+
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+
+  const [showCartSuccess, setShowCartSuccess] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -43,8 +47,32 @@ const ProductDetails: React.FC = () => {
       navigate('/notice', { state: { message: 'Comrade, please log in to add items to your cart.' } });
       return;
     }
-    // Logic to add to cart (to be implemented later)
-    console.log(`Product ${product?.name} added to cart.`);
+
+    fetch('http://localhost/api/cart', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({ product_id: product?.id, quantity: 1 })
+    })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error('Add to cart failed');
+        }
+        return res.json();
+      })
+      .then(data => {
+        if (data.message === 'Product added to cart') {
+          setShowCartSuccess(true);
+
+          setTimeout(() => setShowCartSuccess(false), 3000);
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        setError('An error occurred while adding to cart.');
+      });
   };
 
   const handleBuyNow = () => {
@@ -63,6 +91,15 @@ const ProductDetails: React.FC = () => {
 
   return (
     <div className="product-details-container">
+
+      {showCartSuccess && (
+        <Alert 
+          message={`Product "${product.name}" added to your cart!`} 
+          type="success" 
+          duration={4000}
+        />
+      )}
+
       <button className="back-button" onClick={() => navigate('/menu')}>← Back to Menu</button>
 
       <div className="product-details">

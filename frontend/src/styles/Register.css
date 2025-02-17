@@ -1,28 +1,80 @@
+.login-container input,
+.login-container button {
+  box-sizing: border-box;
+}
+
+/* Register Form Container */
 .register-container {
-    width: 300px;
-    margin: auto;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  .register-container input {
-    display: block;
-    width: 100%;
-    margin-bottom: 10px;
-    padding: 8px;
-  }
-  
-  .register-container button {
-    width: 100%;
-    padding: 10px;
-    background-color: red;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .error {
-    color: red;
-    font-weight: bold;
-  }
-  
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Input Fields */
+.register-container input {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: border 0.3s ease-in-out;
+}
+
+.register-container input:focus {
+  border-color: #ff4d4d;
+  outline: none;
+}
+
+/* Register Button */
+.register-container button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.register-container button:hover {
+  background-color: #cc0000;
+}
+
+/* Error Message */
+.error {
+  color: red;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Redirect to Login */
+.redirect-text {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #555;
+}
+
+.register-container .login-link {
+  background: none;
+  border: none;
+  color: #007bff;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: color 0.3s ease-in-out;
+}
+
+.register-container .login-link:hover {
+  background: none;
+  color: #0056b3;
+  text-decoration: underline;
+}

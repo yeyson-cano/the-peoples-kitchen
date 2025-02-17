@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,15 @@ Route::middleware('auth:sanctum')->group(function () {
         $request->user()->currentAccessToken()->delete();
         return response()->json(['message' => 'Logged out successfully'], 200);
     });
+
+    Route::post('/cart', [CartController::class, 'store']);
+
+    Route::get('/cart', [CartController::class, 'index']);
+    Route::put('/cart/{id}', [CartController::class, 'update']);
+    Route::delete('/cart/{id}', [CartController::class, 'destroy'])
+    ->where('id', '[0-9]+');
+
+    Route::delete('/cart/clear', [CartController::class, 'clear']);
 
     Route::middleware('admin')->group(function () {
         Route::get('/admin/test', function () {
