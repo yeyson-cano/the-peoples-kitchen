@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Alert from '../components/Alert';
+import { ReactComponent as CartIcon } from '../assets/images/cart-icon.svg';
 import '../styles/Menu.css';
 
 interface Product {
@@ -69,27 +70,30 @@ const Menu: React.FC = () => {
     <div className="menu-container">
       {showWelcome && <Alert message="Welcome, Comrade! The revolution welcomes you!" type="success" />}
 
-
       <div className="menu-header">
         <span className="store-title">The People's Kitchen</span>
 
-        {userName ? (
-          <>
-            <div className="user-controls">     
-              <button className="user-button" title={userName}>
-                {userName.length > 12 ? `${userName.substring(0, 12)}...` : userName}
+        <div className="header-right">
+          {userName ? (
+            <>
+              <div className="user-controls">
+                <button className="user-button" title={userName}>
+                  {userName.length > 12 ? `${userName.substring(0, 12)}...` : userName}
+                </button>
+                <button onClick={handleLogout} className="logout-button">Logout</button>
+              </div>
+
+              <button className="cart-button" onClick={() => navigate('/cart')}>
+                <CartIcon className="cart-icon" />
               </button>
-              <button onClick={handleLogout} className="logout-button">Logout</button>
-            </div>
-          </>
-        ) : (
-          <>
+            </>
+          ) : (
             <div className="menu-buttons">
               <button onClick={() => navigate('/login')} className="nav-button login-btn">Login</button>
               <button onClick={() => navigate('/register')} className="nav-button register-btn">Register</button>
             </div>
-          </>
-        )}
+          )}
+        </div>
       </div>
 
       <h2>Menu</h2>

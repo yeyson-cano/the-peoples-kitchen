@@ -27,6 +27,13 @@
     font-weight: bold;
 }
 
+/* Header Right Controls */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 /* User Controls */
 .user-controls {
     display: flex;
@@ -107,6 +114,21 @@
 
 .register-btn:hover {
     background-color: #ddd;
+}
+
+/* Cart Button (solo se muestra cuando está logueado) */
+.cart-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.cart-icon {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    fill: #fff;
 }
 
 /* Grid Layout */

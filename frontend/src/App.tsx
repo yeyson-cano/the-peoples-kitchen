@@ -7,6 +7,7 @@ import ProductDetails from './pages/ProductDetails';
 import Dashboard from './pages/Dashboard';
 import PrivateRoute from './components/PrivateRoute';
 import Notice from './pages/Notice';
+import Cart from './pages/Cart';
 
 const App: React.FC = () => {
   return (
@@ -20,6 +21,7 @@ const App: React.FC = () => {
       <Route path="/menu" element={<Menu />} />
       <Route path="/menu/:id" element={<ProductDetails />} />
       <Route path="/notice" element={<Notice />} />
+      <Route path="/cart" element={<Cart />} />
 
       {/* Protected Admin Route */}
       <Route path="/dashboard" element={<PrivateRoute adminOnly><Dashboard /></PrivateRoute>} />
