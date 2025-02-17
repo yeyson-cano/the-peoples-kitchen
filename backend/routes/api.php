@@ -38,6 +38,13 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('/cart', [CartController::class, 'store']);
 
+    Route::get('/cart', [CartController::class, 'index']);
+    Route::put('/cart/{id}', [CartController::class, 'update']);
+    Route::delete('/cart/{id}', [CartController::class, 'destroy'])
+    ->where('id', '[0-9]+');
+
+    Route::delete('/cart/clear', [CartController::class, 'clear']);
+
     Route::middleware('admin')->group(function () {
         Route::get('/admin/test', function () {
             return response()->json(['message' => 'Welcome, Admin!']);
